@@ -6,15 +6,6 @@ https://google.github.io/mediapipe/solutions/hands.html
 
 import cv2
 import mediapipe as mp
-import tkinter as tk
-
-
-def show_text(text):
-    window = tk.Tk()
-    window.geometry("300x200")
-    lbl = tk.Label(window, text=text)
-    lbl.pack()
-    window.mainloop()
 
 
 def gesture_detection(hand_landmarks_positions):
@@ -107,7 +98,6 @@ with mp_hands.Hands(
             if state is not None and state is not actual_state:
                 actual_state = state
                 print(state)
-
 
         # Flip the image horizontally for a selfie-view display.
         cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
