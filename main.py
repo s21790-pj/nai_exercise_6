@@ -28,18 +28,18 @@ def gesture_detection(hand_landmarks_positions):
         return state
 
     elif (index_finger_tip.y < index_finger_pip.y
-            and pinky_tip.y < pinky_pip.y
-            and middle_finger_tip.y > middle_finger_pip.y
-            and ring_finger_tip.y > ring_finger_pip.y
-            and thumb_tip.x < index_finger_tip.x):
+          and pinky_tip.y < pinky_pip.y
+          and middle_finger_tip.y > middle_finger_pip.y
+          and ring_finger_tip.y > ring_finger_pip.y
+          and thumb_tip.x < index_finger_tip.x):
         state = "Start the music"
         return state
 
     elif (index_finger_tip.y > index_finger_pip.y
-            and middle_finger_tip.y > middle_finger_pip.y
-            and ring_finger_tip.y > ring_finger_pip.y
-            and pinky_tip.y > pinky_pip.y
-            and thumb_tip.x > index_finger_tip.x):
+          and middle_finger_tip.y > middle_finger_pip.y
+          and ring_finger_tip.y > ring_finger_pip.y
+          and pinky_tip.y > pinky_pip.y
+          and thumb_tip.x > index_finger_tip.x):
         state = "Next song"
         return state
 
@@ -50,7 +50,6 @@ def gesture_detection(hand_landmarks_positions):
           and thumb_tip.x < index_finger_tip.x):
         state = "Previous song"
         return state
-
 
 
 mp_drawing = mp.solutions.drawing_utils
@@ -99,10 +98,15 @@ with mp_hands.Hands(
                 actual_state = state
                 print(state)
 
-        # Flip the image horizontally for a selfie-view display.
-        cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
+        cv2.putText(image,
+                    actual_state,
+                    (50, 50),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1,
+                    (0, 255, 255),
+                    2,
+                    cv2.LINE_4)
+
+        cv2.imshow('MediaPipe Hands', image)
         if cv2.waitKey(5) & 0xFF == 27:
             break
 cap.release()
-
-
