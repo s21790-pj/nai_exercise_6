@@ -2,12 +2,20 @@
 
 Hands demo with colorful lines;
 https://google.github.io/mediapipe/solutions/hands.html
+
+An application that is used to detect hand gestures.
+The application could be used to control, for example, a music player.
+
+How to run an application?
+import needed libraries (cv2, mediapipe) and... Have fun!
+
+Authors Kamil Kaczówka, Szymon Olkiewicz.
 """
 
 import cv2
 import mediapipe as mp
 
-
+# Reading the positions of individual fingers
 def gesture_detection(hand_landmarks_positions):
     thumb_tip = hand_landmarks_positions.landmark[mp_hands.HandLandmark.THUMB_TIP]
     index_finger_pip = hand_landmarks_positions.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP]
@@ -19,6 +27,7 @@ def gesture_detection(hand_landmarks_positions):
     pinky_pip = hand_landmarks_positions.landmark[mp_hands.HandLandmark.PINKY_PIP]
     pinky_tip = hand_landmarks_positions.landmark[mp_hands.HandLandmark.PINKY_TIP]
 
+    # Reading individual gestures
     if (index_finger_tip.y > index_finger_pip.y
             and middle_finger_tip.y > middle_finger_pip.y
             and ring_finger_tip.y > ring_finger_pip.y
